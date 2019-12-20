@@ -10,9 +10,9 @@ class GoalsController < ApplicationController
     end
 
     post '/goals' do #creates a new goal and redirects to that goal's show page
-        # if !logged_in?
-        #     redirect '/'
-        # end
+        if !logged_in?
+            redirect '/'
+        end
         if !(params.has_value?("")) 
             @goal = Goal.create(title: params[:title], description: params[:description], user_id: current_user.id)
             redirect "/goals/#{@goal.id}"
@@ -22,6 +22,12 @@ class GoalsController < ApplicationController
     end
 
     get '/goals/:id' do #show page for single goal
+        @goal = Goal.find(params[:id])
         erb :'/goals/show'
+    end
+
+    get '/goals/:id/edit' do #render form to edit goal
+        @goal = Goal.find(params[:id])
+        erb :'goals/edit'
     end
 end
