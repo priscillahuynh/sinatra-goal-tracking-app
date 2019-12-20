@@ -21,15 +21,21 @@ class UsersController < ApplicationController
 
     post '/users' do #creates a new user and redirects to user's home page
         if !(params.has_value?(""))
-            @user = User.create(params)
-            redirect "/users/#{@users.id}" 
+            @user = User.create(params) #creates a user
+            session[:user_id] = @user.id #logs them in
+            redirect "/users/#{@user.id}"  #redirects to home page
         else  
-            #invalid user input...redirect to signup page
-            redirect '/signup'
+            redirect '/signup'  #invalid user input...redirect to signup page
         end
     end
 
     get '/users/:id' do #display user's home/show page
+        @user = User.find_by(id: params[:id])
         erb :'/users/show'
+    end
+
+    get '/logout' do 
+        session.clear 
+        redirect '/'
     end
 end
