@@ -19,8 +19,11 @@ class UsersController < ApplicationController
         erb :signup
     end
 
+    post '/users' do #creates a new user and redirects to user's home page
+        binding.pry
+    end
+
     get '/users/:id' do
         "This will be the user's home/show page"
-
     end
 end
