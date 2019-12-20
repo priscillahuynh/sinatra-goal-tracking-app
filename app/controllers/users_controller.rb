@@ -20,10 +20,16 @@ class UsersController < ApplicationController
     end
 
     post '/users' do #creates a new user and redirects to user's home page
-        binding.pry
+        if !(params.has_value?(""))
+            @user = User.create(params)
+            redirect "/users/#{@users.id}" 
+        else  
+            #invalid user input...redirect to signup page
+            redirect '/signup'
+        end
     end
 
-    get '/users/:id' do
-        "This will be the user's home/show page"
+    get '/users/:id' do #display user's home/show page
+        erb :'/users/show'
     end
 end
