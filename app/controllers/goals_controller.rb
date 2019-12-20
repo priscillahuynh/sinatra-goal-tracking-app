@@ -10,8 +10,11 @@ class GoalsController < ApplicationController
     end
 
     post '/goals' do #creates a new goal and redirects to that goal's show page
-        if !(params.has_value?(""))
-            @goal = Goal.create(params)
+        # if !logged_in?
+        #     redirect '/'
+        # end
+        if !(params.has_value?("")) 
+            @goal = Goal.create(title: params[:title], description: params[:description], user_id: current_user.id)
             redirect "/goals/#{@goal.id}"
         else 
             Invalid entry. Try again
@@ -19,6 +22,6 @@ class GoalsController < ApplicationController
     end
 
     get '/goals/:id' do #show page for single goal
-        erb :show
+        erb :'/goals/show'
     end
 end
