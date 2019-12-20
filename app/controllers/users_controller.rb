@@ -21,6 +21,6 @@ class UsersController < ApplicationController
 
     get '/users/:id' do
         "This will be the user's home/show page"
-        
+
     end
 end
