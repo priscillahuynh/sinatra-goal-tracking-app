@@ -30,4 +30,8 @@ class GoalsController < ApplicationController
         @goal = Goal.find(params[:id])
         erb :'goals/edit'
     end
+
+    patch '/goals/:id' do 
+        Test
+    end
 end
