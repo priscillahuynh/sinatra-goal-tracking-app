@@ -10,7 +10,8 @@ body {
     
   }
   
-  .wrapper {
+
+.wrapper {
     background: #fff;
     opacity: 0.75;
     -moz-box-shadow: 0 0 10px rgba(0,0,0,.3);
@@ -19,7 +20,7 @@ body {
     margin: 16px auto;
     max-width: 960px;
     padding: 2.25%; /* 18px / 800px */
-    width: 85%;
+    width: 80%;
   }
 
   h1 {
