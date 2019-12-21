@@ -31,6 +31,7 @@ class UsersController < ApplicationController
 
     get '/users/:id' do #display user's home/show page
         @user = User.find_by(id: params[:id])
+        @goals = @user.goals
         erb :'/users/show'
     end
 
