@@ -31,8 +31,12 @@ class UsersController < ApplicationController
 
     get '/users/:id' do #display user's home/show page
         @user = User.find_by(id: params[:id])
-        @goals = @user.goals
-        erb :'/users/show'
+        @goals = @user.goals 
+        if @user.id == current_user.id #only allows users to see their own home page
+            erb :'/users/show'
+        else
+            redirect "/users/#{current_user.id}"
+        end
     end
 
     get '/logout' do 
