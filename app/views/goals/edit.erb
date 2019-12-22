@@ -1,7 +1,7 @@
 Edit Goal
 
 <form action="/goals/<%=@goal.id%>" method="POST">
-<input type="hidden" name="_method" value="PATCH">
+<input id="hidden" type="hidden" name="_method" value="PATCH">
 
 <label for="title">Title:</label>
 <input type="text" name="title" value="<%= @goal.title%>">
