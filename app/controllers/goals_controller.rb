@@ -32,6 +32,9 @@ class GoalsController < ApplicationController
     end
 
     patch '/goals/:id' do 
-        Test
+        @goal = Goal.find(params[:id])
+        @goal.update(title: params[:title], description: params[:description])
+        @goal.save
+        redirect "/goals/#{@goal.id}"
     end
 end
