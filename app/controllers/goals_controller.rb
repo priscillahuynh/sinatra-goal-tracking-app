@@ -27,14 +27,27 @@ class GoalsController < ApplicationController
     end
 
     get '/goals/:id/edit' do #render form to edit goal
-        @goal = Goal.find(params[:id])
-        erb :'goals/edit'
+        set_goal
+        if logged_in?
+            
+            if @goal.user_id == current_user.id 
+            erb :'goals/edit'
+            else 
+                redirect "/users/#{current_user.id}"
+            end
+        else
+            redirect '/'
+        end
     end
 
     patch '/goals/:id' do 
-        @goal = Goal.find(params[:id])
+        set_goal
         @goal.update(title: params[:title], description: params[:description])
         @goal.save
         redirect "/goals/#{@goal.id}"
+    end
+
+    def set_goal 
+        @goal = Goal.find(params[:id])
     end
 end
