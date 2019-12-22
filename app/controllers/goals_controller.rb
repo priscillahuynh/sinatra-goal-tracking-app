@@ -51,4 +51,10 @@ class GoalsController < ApplicationController
     def set_goal 
         @goal = Goal.find(params[:id])
     end
+
+    delete '/goals/:id' do 
+        set_goal
+        @goal.destroy
+        redirect "/users/#{current_user.id}"
+    end
 end
