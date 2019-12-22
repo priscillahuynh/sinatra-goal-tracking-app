@@ -102,3 +102,37 @@ body {
     width: 100%;
     transition: width .3s;
    }
+
+   button {
+    display: inline-block;
+    border-style: solid;
+    border-color: black;
+    border-radius: 15px 15px;
+    padding: 0.5rem 1rem;
+    margin: 0;
+    text-decoration: none;
+    background: #ffffff;
+    color: #ffffff;
+    font-family: sans-serif;
+    font-size: 1rem;
+    cursor: pointer;
+    text-align: center;
+    transition: background 250ms ease-in-out, 
+                transform 150ms ease;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+}
+
+button:hover,
+button:focus {
+    background: #c3c3c7;
+}
+
+button:focus {
+    outline: 1px solid #fff;
+    outline-offset: -4px;
+}
+
+button:active {
+    transform: scale(0.99);
+}
