@@ -17,8 +17,8 @@
 
   <% if logged_in? %>
   <div class="nav">
-    <li><a href="#" class="cool-link">Home</a></li>
-    <li><a href="#" class="cool-link">Log Out</a></li>
+    <li><a href="/users/<%=current_user.id%>" class="cool-link">Home</a></li>
+    <li><a href="/logout" class="cool-link">Log Out</a></li>
   </div>
   <% end %>
 
