@@ -1,6 +1,6 @@
-<h1>Welcome <%= @user.name %>!</h1> 
+<h2>Hey <%= @user.name %>, let's tackle your goals today!</h2> 
 
-<h2>GOALS:</h2>
+
 
 <% @goals.each do |g| %>
     <a href="/goals/<%=g.id%>/edit">
