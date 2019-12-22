@@ -1,9 +1,4 @@
 class GoalsController < ApplicationController
-
-    get '/goals' do #index page for all goals
-        erb :index
-    end
-    
     
     get '/goals/new' do #render a form to create a new goal
         erb :'goals/new'
@@ -22,14 +17,13 @@ class GoalsController < ApplicationController
     end
 
     get '/goals/:id' do #show page for single goal
-        @goal = Goal.find(params[:id])
+        set_goal
         erb :'/goals/show'
     end
 
     get '/goals/:id/edit' do #render form to edit goal
         set_goal
         if logged_in?
-            
             if @goal.user_id == current_user.id 
             erb :'goals/edit'
             else 
@@ -42,9 +36,16 @@ class GoalsController < ApplicationController
 
     patch '/goals/:id' do 
         set_goal
-        @goal.update(title: params[:title], description: params[:description])
-        @goal.save
-        redirect "/goals/#{@goal.id}"
+        if logged_in?
+            if @goal.user_id == current_user.id 
+            @goal.update(title: params[:title], description: params[:description])
+            @goal.save
+            redirect "/goals/#{@goal.id}"
+            else 
+                redirect "/users/#{current_user.id}"
+            end
+            redirect '/'
+        end
     end
 
     def set_goal 
