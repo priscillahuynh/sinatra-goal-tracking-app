@@ -9,7 +9,7 @@ class UsersController < ApplicationController
 
     post '/login' do #finds and authenticates a user and logs them in/creates a session
         @user = User.find_by(email: params[:email])
-        if @user.authenticate(params[:password])
+        if @user && @user.authenticate(params[:password])
             session[:user_id] = @user.id
             redirect "/users/#{@user.id}" #redirect to user's home/"show" page
         else 
