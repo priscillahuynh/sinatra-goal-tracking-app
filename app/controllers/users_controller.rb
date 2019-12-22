@@ -1,5 +1,8 @@
 class UsersController < ApplicationController
-
+    get '/' do 
+        erb :welcome
+    end
+    
     get '/login' do #render login form
         erb :login
     end
@@ -30,12 +33,16 @@ class UsersController < ApplicationController
     end
 
     get '/users/:id' do #display user's home/show page
-        @user = User.find_by(id: params[:id])
-        @goals = @user.goals 
-        if @user.id == current_user.id #only allows users to see their own home page
-            erb :'/users/show'
-        else
-            redirect "/users/#{current_user.id}"
+        if logged_in?
+            @user = User.find_by(id: params[:id])
+            @goals = @user.goals 
+            if @user.id == current_user.id #only allows users to see their own home page
+                erb :'/users/show'
+            else
+                redirect "/users/#{current_user.id}"
+            end
+        else 
+            redirect '/'
         end
     end
 
