@@ -12,7 +12,7 @@ class GoalsController < ApplicationController
             @goal = Goal.create(title: params[:title], description: params[:description], user_id: current_user.id)
             redirect "/goals/#{@goal.id}"
         else 
-            Invalid entry. Try again
+            "Invalid entry. Try again"
         end
     end
 
