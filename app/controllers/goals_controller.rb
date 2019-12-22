@@ -24,7 +24,7 @@ class GoalsController < ApplicationController
     get '/goals/:id/edit' do #render form to edit goal
         set_goal
         if logged_in?
-            if @goal.user_id == current_user.id 
+            if @goal.user_id == current_user.id
             erb :'goals/edit'
             else 
                 redirect "/users/#{current_user.id}"
@@ -44,6 +44,7 @@ class GoalsController < ApplicationController
             else 
                 redirect "/users/#{current_user.id}"
             end
+        else
             redirect '/'
         end
     end
